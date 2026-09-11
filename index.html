@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio Digital · Organización, digitalización y capacitación documental</title>
+<meta name="description" content="Organizo y digitalizo los documentos de su empresa, elaboro CCD, TRD y TVD y capacito a su equipo. Diagnóstico gratis en Villavicencio, Meta.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Folio Digital · Johann Suárez">
+<meta property="og:description" content="¿Cuánto tiempo pierde su empresa buscando un documento? Diagnóstico documental gratis en Villavicencio.">
+<meta property="og:url" content="https://emprendedorgoethe-sys.github.io/folio-digital/">
+<meta property="og:image" content="https://emprendedorgoethe-sys.github.io/folio-digital/preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="theme-color" content="#0F2A44">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0F2A44; --navy2:#173A5E; --blue:#2A72C4; --blue2:#54A0EE; --sky:#E7ECF9; --sky2:#F4F7FD;
+    --yellow:#F2C14E; --wine:#8E1B2E; --red:#C2413A; --ink:#1D1D1F; --muted:#5F5F63; --line:#E3E7F0;
+    --shadow:0 10px 30px rgba(15,42,68,.10); --shadow2:0 18px 40px rgba(15,42,68,.16);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--sky2);color:var(--ink);font-family:"Plus Jakarta Sans","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,p{margin:0}
+  a{color:inherit}
+  svg{display:block;max-width:100%}
+  img{max-width:100%}
+  .wrap{max-width:1120px;margin:0 auto;padding-inline:18px}
+
+  /* ---------- Botones ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;border-radius:999px;padding:14px 22px;font-size:16px;line-height:1.1;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;white-space:nowrap}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0) scale(.98)}
+  .btn:focus-visible{outline:3px solid var(--blue2);outline-offset:3px}
+  .btn-yellow{background:var(--yellow);color:var(--navy);box-shadow:0 8px 22px rgba(242,193,78,.45)}
+  .btn-yellow:hover{box-shadow:0 12px 28px rgba(242,193,78,.6)}
+  .btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 8px 22px rgba(42,114,196,.35)}
+  .btn-blue:hover{box-shadow:0 12px 28px rgba(42,114,196,.5)}
+  .btn-glass{background:rgba(255,255,255,.10);color:#fff;border:1.5px solid rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+  .btn-glass:hover{background:rgba(255,255,255,.18)}
+  .btn svg{flex:none}
+
+  /* ---------- Barra superior ---------- */
+  .top{position:sticky;top:0;z-index:40;background:rgba(15,42,68,.86);backdrop-filter:saturate(160%) blur(12px);-webkit-backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .top .wrap{display:flex;align-items:center;gap:14px;height:66px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:1;min-width:0}
+  .logo b{font-size:20px;font-weight:800;letter-spacing:-.4px;white-space:nowrap}
+  .logo b span{color:var(--yellow)}
+  .nav{display:none;gap:4px}
+  .nav a{color:#D5E1F2;text-decoration:none;font-weight:600;font-size:14.5px;padding:8px 12px;border-radius:999px;transition:background .2s,color .2s}
+  .nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+  .top .btn{padding:10px 16px;font-size:14px}
+
+  /* ---------- Portada ---------- */
+  .hero{position:relative;overflow:hidden;background:radial-gradient(900px 480px at 85% -10%,rgba(84,160,238,.45),transparent 60%),radial-gradient(700px 420px at -10% 110%,rgba(242,193,78,.18),transparent 60%),linear-gradient(160deg,#0F2A44 0%,#173A5E 60%,#1E4B7A 100%);color:#fff;padding-block:48px 150px}
+  .hero .grid{display:grid;gap:28px}
+  .chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#E7ECF9;font-weight:600;font-size:13.5px;border-radius:999px;padding:6px 14px}
+  .chip i{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 0 4px rgba(242,193,78,.25)}
+  .hero h1{font-size:clamp(34px,7vw,60px);line-height:1.05;font-weight:800;letter-spacing:-1.5px;margin-top:18px}
+  .hero h1 em{font-style:normal;color:var(--yellow)}
+  .hero p.lead{font-size:clamp(17px,2.4vw,20px);color:#C9D6EA;margin-top:18px;max-width:640px}
+  .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+  .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:10px 14px;min-width:120px}
+  .stat b{display:block;font-size:22px;font-weight:800;color:#fff;line-height:1.1}
+  .stat span{font-size:13px;color:#B9C8DE}
+  .by{display:flex;align-items:center;gap:12px;margin-top:24px}
+  .by img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.6)}
+  .by b{display:block;font-size:15px}
+  .by span{font-size:13.5px;color:#B9C8DE}
+
+  /* ---------- Antes y después ---------- */
+  .compare{display:grid;grid-template-columns:1fr;gap:16px;margin-top:-110px;position:relative;z-index:2}
+  .card{background:#fff;border-radius:24px;padding:16px;box-shadow:var(--shadow2);border:1px solid var(--line)}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;letter-spacing:1.4px;padding:6px 12px;border-radius:999px;margin-bottom:12px}
+  .antes .pill{background:#F8E8EA;color:var(--wine)}
+  .despues .pill{background:var(--sky);color:var(--blue)}
+  .card .ill{border-radius:16px;overflow:hidden}
+  .card ul,.list{list-style:none;padding:0;margin:14px 0 0}
+  .card li,.list li{font-size:15px;line-height:1.4;margin:0 0 9px;padding-left:30px;position:relative;font-weight:600}
+  .card li:before,.list li:before{position:absolute;left:0;top:0;width:21px;height:21px;border-radius:50%;font-size:12px;font-weight:800;text-align:center;line-height:21px}
+  .antes li:before{content:"✕";background:#F8E8EA;color:var(--wine)}
+  .despues li:before,.list li:before{content:"✓";background:var(--sky);color:var(--blue)}
+
+  .benefits{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
+  .benefit{display:flex;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow)}
+  .ic{width:52px;height:52px;flex:none;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#E7ECF9,#F4F7FD);border:1px solid #D9E2F5}
+  .benefit b{display:block;font-size:16.5px;color:var(--navy);line-height:1.2}
+  .benefit small{display:block;font-size:14px;color:var(--muted);line-height:1.35;margin-top:2px}
+
+  /* ---------- Secciones ---------- */
+  section{padding-block:64px 0}
+  .kicker{display:inline-block;font-size:12.5px;font-weight:800;color:var(--blue);letter-spacing:1.6px;background:var(--sky);border-radius:999px;padding:5px 12px}
+  h2{font-size:clamp(28px,4.8vw,40px);line-height:1.12;color:var(--navy);font-weight:800;letter-spacing:-1px;margin-top:12px}
+  .sub{color:var(--muted);margin-top:10px;font-size:17px;max-width:640px}
+
+  .services{display:grid;grid-template-columns:1fr;gap:16px;margin-top:26px}
+  .svc{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;position:relative;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
+  .svc:hover{transform:translateY(-4px);box-shadow:var(--shadow2)}
+  .svc.free{background:linear-gradient(160deg,#fff 0%,#FFF8E6 100%);border-color:#F4DDA0}
+  .svc .head{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+  .svc h3{font-size:19px;line-height:1.2;color:var(--navy);font-weight:800;letter-spacing:-.3px}
+  .svc p{font-size:15px;color:var(--muted)}
+  .svc ul{list-style:none;padding:0;margin:12px 0 0}
+  .svc li{font-size:14.5px;line-height:1.4;margin-bottom:6px;padding-left:22px;position:relative;font-weight:600}
+  .svc li:before{content:"";position:absolute;left:2px;top:7px;width:9px;height:9px;border-radius:3px;background:var(--blue2)}
+  .badge{position:absolute;top:-12px;right:18px;box-shadow:0 6px 14px rgba(242,193,78,.45);background:var(--yellow);color:var(--navy);font-size:12px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:999px}
+
+  /* ---------- Capacitaciones ---------- */
+  .train{display:grid;grid-template-columns:1fr;gap:22px;margin-top:26px;align-items:start}
+  .topics{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .topic{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-weight:600;font-size:14.5px;color:var(--navy);box-shadow:0 4px 12px rgba(15,42,68,.06)}
+  .topic i{width:8px;height:8px;border-radius:50%;background:var(--blue2);flex:none}
+  .includes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+  .inc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;display:grid;grid-template-columns:46px 1fr;column-gap:12px;align-items:center}
+  .inc .ic{grid-row:span 2}
+  .inc .ic{width:46px;height:46px;border-radius:14px}
+  .inc b{display:block;color:var(--navy);font-size:15px;line-height:1.25}
+  .inc small{display:block;color:var(--muted);font-size:13.5px;line-height:1.35}
+  .quiz{background:linear-gradient(160deg,#0F2A44,#1E4B7A);border-radius:26px;padding:20px;color:#fff;box-shadow:var(--shadow2)}
+  .quiz .bar{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:#B9C8DE;font-weight:600}
+  .quiz .prog{height:7px;background:rgba(255,255,255,.15);border-radius:99px;margin:10px 0 18px;overflow:hidden}
+  .quiz .prog i{display:block;width:70%;height:100%;background:linear-gradient(90deg,var(--blue2),var(--yellow));border-radius:99px}
+  .quiz h3{font-size:19px;line-height:1.3;font-weight:700}
+  .opt{display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 14px;margin-top:10px;font-weight:600}
+  .opt.ok{background:rgba(242,193,78,.16);border-color:var(--yellow)}
+  .opt .dot{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.5);flex:none}
+  .opt.ok .dot{background:var(--yellow);border-color:var(--yellow);display:flex;align-items:center;justify-content:center}
+  .quiz .res{display:flex;align-items:center;gap:12px;margin-top:16px;background:#fff;color:var(--navy);border-radius:16px;padding:12px 14px}
+  .quiz .res b{font-size:15px}
+  .quiz .res small{display:block;color:var(--muted);font-size:13px}
+  .medal{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--yellow),#F7D98A);display:flex;align-items:center;justify-content:center;flex:none}
+
+  /* ---------- Pasos ---------- */
+  .steps{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr;gap:12px;counter-reset:s}
+  .steps li{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow)}
+  .steps .n{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;flex:none}
+  .steps b{display:block;color:var(--navy);font-size:17px}
+  .steps small{display:block;color:var(--muted);font-size:15px;line-height:1.4}
+
+  /* ---------- Ley y quién soy ---------- */
+  .duo{display:grid;grid-template-columns:1fr;gap:28px}
+  .law{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;margin-top:22px;box-shadow:var(--shadow)}
+  .law .item{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
+  .law .yrs{flex:none;width:72px;text-align:center;background:linear-gradient(135deg,var(--wine),#B8364B);color:#fff;border-radius:16px;padding:10px 0 8px;line-height:1}
+  .law .yrs b{display:block;font-size:28px;font-weight:800}
+  .law .yrs span{font-size:11.5px;font-weight:700;letter-spacing:.6px}
+  .law .txt{font-size:15.5px;line-height:1.4;font-weight:600}
+  .law .txt small{display:block;font-weight:500;color:var(--muted);font-size:13px;margin-top:4px}
+  .law .q{font-size:17px;font-weight:800;color:var(--wine)}
+  .me{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;margin-top:22px;box-shadow:var(--shadow)}
+  .me .who{display:flex;gap:16px;align-items:center}
+  .me img{width:92px;height:92px;border-radius:22px;object-fit:cover;flex:none}
+  .me h3{font-size:21px;color:var(--navy);font-weight:800}
+  .me .role{display:inline-block;font-size:13px;color:var(--blue);font-weight:700;background:var(--sky);border-radius:999px;padding:3px 10px;margin-top:4px}
+  .me p{color:var(--muted);margin-top:14px}
+
+  /* ---------- Cierre ---------- */
+  .final{position:relative;overflow:hidden;background:radial-gradient(600px 300px at 100% 0%,rgba(84,160,238,.45),transparent 60%),linear-gradient(135deg,#0F2A44,#1E4B7A);color:#fff;border-radius:30px;padding:34px 22px;margin-top:64px;text-align:center;box-shadow:var(--shadow2)}
+  .final h2{color:#fff}
+  .final h2 em{font-style:normal;color:var(--yellow)}
+  .final p{color:#C9D6EA;margin-top:10px;font-size:17px}
+  .final .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:24px}
+  .final .data{margin-top:22px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;font-weight:600;color:#E7ECF9;font-size:15px}
+
+  footer{padding-block:30px 100px;text-align:center;color:var(--muted);font-size:13.5px}
+
+  .float{position:fixed;right:16px;bottom:16px;z-index:50;height:58px;padding:0 18px 0 14px;border-radius:999px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;box-shadow:0 10px 26px rgba(42,114,196,.45);transition:transform .2s}
+  .float:hover{transform:translateY(-3px)}
+
+  /* Aparición suave al bajar */
+  .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .js .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}.btn,.svc,.float{transition:none}}
+
+  @media (min-width:760px){
+    .nav{display:flex}
+    .compare{grid-template-columns:1fr 1fr;gap:22px}
+    .benefits{grid-template-columns:repeat(3,1fr)}
+    .services{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:repeat(4,1fr)}
+    .steps li{flex-direction:column}
+    .duo{grid-template-columns:1fr 1fr}
+    .final{padding:52px}
+  }
+  @media (min-width:1000px){
+    .services{grid-template-columns:repeat(3,1fr)}
+    .train{grid-template-columns:1.1fr .9fr;gap:36px}
+  }
+  @media (max-width:420px){ .top .btn span{display:none} .includes{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Folio Digital, inicio">
+      <svg width="38" height="38" viewBox="0 0 64 64" aria-hidden="true">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2A72C4"/><stop offset="1" stop-color="#54A0EE"/></linearGradient></defs>
+        <rect x="15" y="6" width="28" height="34" rx="3" fill="#fff"/>
+        <rect x="20" y="13" width="17" height="3" rx="1.5" fill="#9FB3C8"/>
+        <path d="M6 20h15l5 5h28a4 4 0 0 1 4 4v23a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z" fill="url(#lg)"/>
+        <circle cx="44" cy="42" r="9" fill="#0F2A44" stroke="#F2C14E" stroke-width="4"/>
+        <line x1="50.5" y1="48.5" x2="59" y2="57" stroke="#F2C14E" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <b>Folio <span>Digital</span></b>
+    </a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#servicios">Servicios</a><a href="#capacitaciones">Capacitaciones</a><a href="#como">Cómo trabajo</a><a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-yellow" href="https://wa.me/573213258650?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2z" fill="#0F2A44"/><path d="M8.5 7.5c.4-.9 1-.9 1.4-.8l1 2.3c.1.3 0 .6-.2.8l-.7.8c.7 1.4 1.8 2.5 3.2 3.2l.8-.7c.2-.2.5-.3.8-.2l2.3 1c.1.4.1 1-.8 1.4-1 .5-2.3.4-4-.6a11 11 0 0 1-4.4-4.4c-1-1.7-1.1-3-.4-3.8z" fill="#F2C14E"/></svg><span>Diagnóstico gratis</span>
+    </a>
+  </div>
+</header>
+
+<div class="hero" id="inicio">
+  <div class="wrap">
+    <span class="chip"><i></i>Villavicencio · Meta</span>
+    <h1>¿Cuánto tiempo pierde su empresa <em>buscando un documento?</em></h1>
+    <p class="lead">Organizo y digitalizo los documentos de su empresa, capacito a su equipo y le dejo un sistema para <b style="color:#fff">encontrar cualquier papel en segundos</b>.</p>
+    <div class="actions">
+      <a class="btn btn-yellow" href="https://wa.me/573213258650?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Pedir diagnóstico gratis
+        <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 4l6 6-6 6" stroke="#0F2A44" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn btn-glass" href="#servicios">Ver servicios</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>11 años</b><span>organizando archivos</span></div>
+      <div class="stat"><b>5 servicios</b><span>de papel a la nube</span></div>
+      <div class="stat"><b>Gratis</b><span>el primer diagnóstico</span></div>
+    </div>
+    <div class="by"><img src="foto.jpg" alt=""><div><b>Johann Suárez</b><span>Gestión documental + tecnología</span></div></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="compare">
+    <div class="card antes reveal">
+      <span class="pill">ANTES</span>
+      <div class="ill">
+      <svg viewBox="0 0 340 226" width="100%" role="img" aria-label="Archivo desordenado: cajas amontonadas, papeles en el piso y una persona buscando">
+        <rect width="340" height="226" fill="#F5F1EC"/>
+        <rect y="186" width="340" height="40" fill="#E7DFD4"/>
+        <g transform="translate(18,128)"><rect width="98" height="58" fill="#C99B68" stroke="#8E6A43" stroke-width="2"/><rect width="98" height="10" fill="#B88855"/><rect x="39" y="24" width="20" height="7" rx="3.5" fill="#8E6A43"/><rect x="10" y="38" width="24" height="12" fill="#fff" opacity=".75"/></g>
+        <g transform="translate(28,80) rotate(-7 44 26)"><rect width="88" height="52" fill="#D2A673" stroke="#8E6A43" stroke-width="2"/><rect width="88" height="9" fill="#BE8F5C"/><rect x="34" y="22" width="20" height="7" rx="3.5" fill="#8E6A43"/></g>
+        <rect x="58" y="22" width="24" height="30" fill="#fff" stroke="#BDB5AA" stroke-width="1.5" transform="rotate(-20 70 37)"/>
+        <rect x="74" y="26" width="22" height="28" fill="#fff" stroke="#BDB5AA" stroke-width="1.5" transform="rotate(16 85 40)"/>
+        <g transform="translate(40,40) rotate(10 34 20)"><rect width="68" height="42" fill="#C99B68" stroke="#8E6A43" stroke-width="2"/><rect width="68" height="8" fill="#B88855"/></g>
+        <g transform="translate(236,146) rotate(-9 45 22)"><rect width="92" height="46" fill="#C99B68" stroke="#8E6A43" stroke-width="2"/><polygon points="0,0 -16,-18 38,-14 44,0" fill="#B88855" stroke="#8E6A43" stroke-width="2"/><rect x="8" y="-16" width="22" height="26" fill="#fff" stroke="#BDB5AA" stroke-width="1.5" transform="rotate(-25 19 -3)"/></g>
+        <g fill="#fff" stroke="#BDB5AA" stroke-width="1.5">
+          <rect x="118" y="194" width="26" height="32" transform="rotate(68 131 210)"/><rect x="150" y="192" width="24" height="30" transform="rotate(22 162 207)"/>
+          <rect x="204" y="196" width="24" height="30" transform="rotate(-34 216 211)"/><rect x="258" y="192" width="24" height="30" transform="rotate(14 270 207)"/>
+          <rect x="296" y="196" width="24" height="30" transform="rotate(-26 308 211)"/><rect x="222" y="182" width="22" height="28" transform="rotate(52 233 196)"/>
+          <rect x="128" y="36" width="20" height="25" transform="rotate(-28 138 48)"/><rect x="244" y="96" width="18" height="23" transform="rotate(32 253 107)"/>
+        </g>
+        <rect x="170" y="148" width="10" height="46" rx="5" fill="#3E4A5C"/><rect x="184" y="148" width="10" height="46" rx="5" fill="#3E4A5C"/>
+        <ellipse cx="174" cy="195" rx="9" ry="4.5" fill="#222"/><ellipse cx="190" cy="195" rx="9" ry="4.5" fill="#222"/>
+        <path d="M168 110 L154 94 L165 77" stroke="#8A94A6" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M196 110 L210 94 L199 77" stroke="#8A94A6" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="164" y="100" width="36" height="56" rx="11" fill="#8A94A6"/>
+        <circle cx="182" cy="84" r="15" fill="#E7B48A"/><path d="M167 83a15 15 0 0 1 30 0q-6-7-15-6q-9-1-15 6z" fill="#2E2A28"/>
+        <circle cx="165" cy="77" r="5" fill="#E7B48A"/><circle cx="199" cy="77" r="5" fill="#E7B48A"/>
+        <circle cx="177" cy="86" r="1.8" fill="#2E2A28"/><circle cx="187" cy="86" r="1.8" fill="#2E2A28"/>
+        <path d="M177 95q5-4 10 0" stroke="#2E2A28" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M203 64q4 6 0 9q-4-3 0-9z" fill="#54A0EE"/>
+        <g font-family="Plus Jakarta Sans,Segoe UI,Arial" font-weight="800" fill="#C2413A"><text x="132" y="96" font-size="30">?</text><text x="214" y="58" font-size="24">?</text><text x="228" y="90" font-size="17">?</text></g>
+        <g transform="translate(292,44)"><circle r="25" fill="#fff" stroke="#C2413A" stroke-width="4"/><line y2="-15" stroke="#0F2A44" stroke-width="3" stroke-linecap="round"/><line x2="11" y2="6" stroke="#0F2A44" stroke-width="3" stroke-linecap="round"/><circle r="3" fill="#0F2A44"/></g>
+      </svg>
+      </div>
+      <ul>
+        <li>Horas buscando un solo papel</li>
+        <li>Documentos dañados, perdidos o repetidos</li>
+        <li>Contratos y pólizas que se vencen sin aviso</li>
+      </ul>
+    </div>
+
+    <div class="card despues reveal">
+      <span class="pill">DESPUÉS</span>
+      <div class="ill">
+      <svg viewBox="0 0 340 226" width="100%" role="img" aria-label="Archivo organizado en estantes, copia en la nube y un celular que encuentra un contrato en 3 segundos">
+        <rect width="340" height="226" fill="#E7ECF9"/><rect y="186" width="340" height="40" fill="#D3DDF2"/>
+        <g fill="#0F2A44"><rect x="18" y="56" width="6" height="134"/><rect x="170" y="56" width="6" height="134"/><rect x="18" y="56" width="158" height="6"/><rect x="18" y="100" width="158" height="6"/><rect x="18" y="143" width="158" height="6"/><rect x="18" y="184" width="158" height="6"/></g>
+        <g stroke="#0F2A44" stroke-width="1.5" fill="#fff">
+          <rect x="30" y="68" width="31" height="32"/><rect x="65" y="68" width="31" height="32"/><rect x="100" y="68" width="31" height="32"/><rect x="135" y="68" width="31" height="32"/>
+          <rect x="30" y="111" width="31" height="32"/><rect x="65" y="111" width="31" height="32"/><rect x="100" y="111" width="31" height="32"/><rect x="135" y="111" width="31" height="32"/>
+          <rect x="30" y="152" width="31" height="32"/><rect x="65" y="152" width="31" height="32"/><rect x="100" y="152" width="31" height="32"/><rect x="135" y="152" width="31" height="32"/>
+        </g>
+        <g fill="#2A72C4"><rect x="36" y="74" width="19" height="8"/><rect x="71" y="74" width="19" height="8"/><rect x="106" y="74" width="19" height="8"/><rect x="141" y="74" width="19" height="8"/></g>
+        <g fill="#F2C14E"><rect x="36" y="117" width="19" height="8"/><rect x="71" y="117" width="19" height="8"/><rect x="106" y="117" width="19" height="8"/><rect x="141" y="117" width="19" height="8"/></g>
+        <g fill="#8E1B2E"><rect x="36" y="158" width="19" height="8"/><rect x="71" y="158" width="19" height="8"/><rect x="106" y="158" width="19" height="8"/><rect x="141" y="158" width="19" height="8"/></g>
+        <g fill="#AFC2D2">
+          <rect x="41" y="89" width="9" height="3" rx="1.5"/><rect x="76" y="89" width="9" height="3" rx="1.5"/><rect x="111" y="89" width="9" height="3" rx="1.5"/><rect x="146" y="89" width="9" height="3" rx="1.5"/>
+          <rect x="41" y="132" width="9" height="3" rx="1.5"/><rect x="76" y="132" width="9" height="3" rx="1.5"/><rect x="111" y="132" width="9" height="3" rx="1.5"/><rect x="146" y="132" width="9" height="3" rx="1.5"/>
+          <rect x="41" y="173" width="9" height="3" rx="1.5"/><rect x="76" y="173" width="9" height="3" rx="1.5"/><rect x="111" y="173" width="9" height="3" rx="1.5"/><rect x="146" y="173" width="9" height="3" rx="1.5"/>
+        </g>
+        <circle cx="30" cy="36" r="15" fill="#2A72C4"/><path d="M23 36l5 5 9-10" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <g fill="#54A0EE"><circle cx="232" cy="46" r="18.5"/><circle cx="258" cy="34" r="24.5"/><circle cx="286" cy="46" r="18.5"/><rect x="211.5" y="44" width="96" height="22.5" rx="11"/></g>
+        <g fill="#fff"><circle cx="232" cy="46" r="16"/><circle cx="258" cy="34" r="22"/><circle cx="286" cy="46" r="16"/><rect x="214" y="46.5" width="91" height="17.5" rx="8.5"/></g>
+        <path d="M234 40h6l2 2h8v12h-16z" fill="#2A72C4"/><path d="M252 36h6l2 2h8v12h-16z" fill="#F2C14E"/><path d="M270 40h6l2 2h8v12h-16z" fill="#8E1B2E"/>
+        <path d="M182 94 Q186 62 204 56" stroke="#2A72C4" stroke-width="3" fill="none" stroke-dasharray="5 4" stroke-linecap="round"/>
+        <path d="M197 49l10 6-9 7" stroke="#2A72C4" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="204" y="78" width="130" height="144" rx="15" fill="#0F2A44"/><rect x="212" y="91" width="114" height="120" rx="7" fill="#fff"/><rect x="254" y="83" width="30" height="4" rx="2" fill="#2B4A70"/>
+        <rect x="218" y="98" width="102" height="22" rx="11" fill="#EDF1F9"/>
+        <circle cx="229" cy="108.5" r="4.5" stroke="#0F2A44" stroke-width="2" fill="none"/><line x1="232.5" y1="112" x2="236" y2="115.5" stroke="#0F2A44" stroke-width="2" stroke-linecap="round"/>
+        <text x="241" y="113" font-family="Plus Jakarta Sans,Segoe UI,Arial" font-size="9.5" font-weight="600" fill="#0F2A44">Contrato Pérez</text>
+        <rect x="218" y="126" width="102" height="46" rx="7" fill="#E7ECF9" stroke="#2A72C4" stroke-width="1.5"/>
+        <circle cx="232" cy="149" r="9" fill="#2A72C4"/><path d="M227.5 149l3 3 6-6.5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="246" y="145" font-family="Plus Jakarta Sans,Segoe UI,Arial" font-size="10" font-weight="800" fill="#0F2A44">Encontrado</text>
+        <text x="246" y="159" font-family="Plus Jakarta Sans,Segoe UI,Arial" font-size="9" font-weight="700" fill="#2A72C4">en 3 segundos</text>
+        <rect x="218" y="179" width="102" height="9" rx="4.5" fill="#EDF1F9"/><rect x="218" y="193" width="70" height="9" rx="4.5" fill="#EDF1F9"/>
+      </svg>
+      </div>
+      <ul>
+        <li>Cajas y carpetas rotuladas y en orden</li>
+        <li>Inventario digital de todo su archivo</li>
+        <li>Buscador en el computador y el celular</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="benefits">
+    <div class="benefit reveal">
+      <div class="ic"><svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="13" stroke="#2A72C4" stroke-width="4" fill="none"/><line x1="30" y1="30" x2="42" y2="42" stroke="#0F2A44" stroke-width="5" stroke-linecap="round"/><path d="M22 11l-7 10h6l-2 8 8-11h-6z" fill="#F2C14E"/></svg></div>
+      <div><b>Lo encuentra en segundos</b><small>Por nombre, fecha o tipo de documento</small></div>
+    </div>
+    <div class="benefit reveal">
+      <div class="ic"><svg width="32" height="32" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 38h22a9 9 0 0 0 1-18 12 12 0 0 0-23 2 8 8 0 0 0 0 16z" stroke="#2A72C4" stroke-width="3.5" fill="none" stroke-linejoin="round"/><rect x="19" y="27" width="12" height="9" rx="2" fill="#0F2A44"/><path d="M21.5 27v-3a3.5 3.5 0 0 1 7 0v3" stroke="#0F2A44" stroke-width="2.5" fill="none"/></svg></div>
+      <div><b>Seguro en la nube</b><small>Aunque haya inundación, robo o daño</small></div>
+    </div>
+    <div class="benefit reveal">
+      <div class="ic"><svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="11" width="34" height="30" rx="5" stroke="#2A72C4" stroke-width="3.5" fill="none"/><line x1="7" y1="20" x2="41" y2="20" stroke="#2A72C4" stroke-width="3.5"/><line x1="16" y1="6" x2="16" y2="14" stroke="#0F2A44" stroke-width="3.5" stroke-linecap="round"/><line x1="32" y1="6" x2="32" y2="14" stroke="#0F2A44" stroke-width="3.5" stroke-linecap="round"/><path d="M16 30l5 5 10-10" stroke="#8E1B2E" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><b>Nada se le vence</b><small>Alertas antes de cada fecha límite</small></div>
+    </div>
+  </div>
+
+  <section id="servicios">
+    <span class="kicker">SERVICIOS</span>
+    <h2>Lo que hago por su empresa</h2>
+    <p class="sub">Del archivo en cajas a un sistema ordenado, seguro y fácil de consultar.</p>
+    <div class="services">
+      <article class="svc free reveal">
+        <span class="badge">GRATIS</span>
+        <div class="head"><div class="ic"><svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="9" width="28" height="35" rx="4" stroke="#2A72C4" stroke-width="3.5" fill="none"/><rect x="17" y="4" width="14" height="9" rx="2.5" fill="#0F2A44"/><path d="M17 27l5 5 9-10" stroke="#F2C14E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Diagnóstico documental</h3></div>
+        <p>Visito su empresa, reviso cómo están sus documentos y le digo qué riesgos tiene y cómo resolverlos.</p>
+        <ul><li>Visita de 30 minutos</li><li>Recomendaciones claras</li><li>Sin compromiso</li></ul>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ic"><svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="10" rx="2.5" fill="#0F2A44"/><rect x="9" y="20" width="30" height="21" rx="2.5" stroke="#2A72C4" stroke-width="3.5" fill="none"/><rect x="18" y="26" width="12" height="5" rx="2.5" fill="#F2C14E"/></svg></div><h3>Organización del archivo en papel</h3></div>
+        <p>Clasifico, ordeno y rotulo carpetas y cajas para que cualquier persona encuentre lo que busca.</p>
+        <ul><li>Clasificación y rotulado</li><li>Inventario en Excel (FUID)</li><li>Buscador por nombre, fecha o tipo</li></ul>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ic"><svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true"><path d="M14 38h22a9 9 0 0 0 1-18 12 12 0 0 0-23 2 8 8 0 0 0 0 16z" stroke="#2A72C4" stroke-width="3.5" fill="none" stroke-linejoin="round"/><path d="M24 34V23M19 28l5-5 5 5" stroke="#0F2A44" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Orden digital y automatización</h3></div>
+        <p>Ordeno los documentos regados en correos, WhatsApp y computadores, y los dejo seguros en la nube.</p>
+        <ul><li>Carpetas en Google Drive u OneDrive</li><li>Alertas automáticas de vencimientos</li><li>Escaneo con los equipos de su empresa</li></ul>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ic"><svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="8" width="36" height="32" rx="4" stroke="#2A72C4" stroke-width="3.5" fill="none"/><line x1="6" y1="17" x2="42" y2="17" stroke="#2A72C4" stroke-width="3"/><line x1="18" y1="17" x2="18" y2="40" stroke="#2A72C4" stroke-width="3"/><rect x="22" y="22" width="15" height="3.5" rx="1.75" fill="#0F2A44"/><rect x="22" y="29" width="11" height="3.5" rx="1.75" fill="#F2C14E"/></svg></div><h3>CCD, TRD y TVD</h3></div>
+        <p>Elaboro el Cuadro de Clasificación y las Tablas de Retención y Valoración Documental: qué guardar, por cuánto tiempo y qué se puede eliminar.</p>
+        <ul><li>Levantamiento de información por áreas</li><li>Tiempos de conservación con soporte legal</li><li>Documento listo para aprobar en su empresa</li></ul>
+      </article>
+      <article class="svc reveal">
+        <div class="head"><div class="ic"><svg width="30" height="30" viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="9" width="38" height="25" rx="3.5" stroke="#2A72C4" stroke-width="3.5" fill="none"/><path d="M21 16v11l9-5.5z" fill="#0F2A44"/><path d="M14 43h20M24 34v9" stroke="#2A72C4" stroke-width="3.5" stroke-linecap="round"/></svg></div><h3>Capacitación a su equipo</h3></div>
+        <p>Sus empleados aprenden a archivar y nombrar documentos correctamente, para que el orden se mantenga.</p>
+        <ul><li>Presencial o virtual</li><li>Tutoriales y evaluación</li><li>Certificado de asistencia</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="capacitaciones">
+    <span class="kicker">CAPACITACIONES</span>
+    <h2>Un archivo ordenado dura cuando su equipo sabe mantenerlo</h2>
+    <div class="train">
+      <div class="reveal">
+        <p class="sub">Capacitaciones prácticas, hechas a la medida de su empresa: con sus propios documentos, sus procesos y su forma de trabajar.</p>
+        <div class="topics">
+          <span class="topic"><i></i>Organización de archivos de gestión</span>
+          <span class="topic"><i></i>Cómo nombrar y guardar documentos digitales</span>
+          <span class="topic"><i></i>TRD explicada para su equipo</span>
+          <span class="topic"><i></i>Transferencias documentales</span>
+          <span class="topic"><i></i>Cuidado y conservación de documentos</span>
+          <span class="topic"><i></i>Documentos en la nube sin desorden</span>
+        </div>
+        <div class="includes">
+          <div class="inc"><div class="ic"><svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="16" r="7" fill="#2A72C4"/><circle cx="33" cy="18" r="5.5" fill="#54A0EE"/><path d="M4 40c1-8 6-13 13-13s12 5 13 13z" fill="#0F2A44"/><path d="M28 40c.6-5 3-9 8-9s8 4 8.5 9z" fill="#54A0EE"/></svg></div><b>Presencial o virtual</b><small>En su empresa o por videollamada</small></div>
+          <div class="inc"><div class="ic"><svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="8" width="40" height="28" rx="5" fill="#0F2A44"/><path d="M20 15v14l11-7z" fill="#F2C14E"/><rect x="12" y="40" width="24" height="4" rx="2" fill="#2A72C4"/></svg></div><b>Tutoriales</b><small>Para repasar cuando lo necesiten</small></div>
+          <div class="inc"><div class="ic"><svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="5" width="30" height="38" rx="5" stroke="#2A72C4" stroke-width="3.5" fill="none"/><path d="M16 18l3 3 6-6M16 31l3 3 6-6" stroke="#0F2A44" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="28" y="17" width="5" height="3.5" rx="1.75" fill="#F2C14E"/><rect x="28" y="30" width="5" height="3.5" rx="1.75" fill="#F2C14E"/></svg></div><b>Evaluación</b><small>Para confirmar lo aprendido</small></div>
+          <div class="inc"><div class="ic"><svg width="24" height="24" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="19" r="12" fill="#F2C14E"/><path d="M16 29l-4 15 12-6 12 6-4-15" fill="#2A72C4"/><path d="M19 19l3.5 3.5L29 16" stroke="#0F2A44" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><b>Certificado</b><small>De asistencia para cada participante</small></div>
+        </div>
+      </div>
+      <div class="quiz reveal" aria-label="Ejemplo de evaluación">
+        <div class="bar"><span>Evaluación · Pregunta 7 de 10</span><span>Folio Digital</span></div>
+        <div class="prog"><i></i></div>
+        <h3>¿Cuánto tiempo debe conservar su empresa los libros y papeles de comercio?</h3>
+        <div class="opt"><span>5 años</span><span class="dot"></span></div>
+        <div class="opt ok"><span>10 años</span><span class="dot"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="#0F2A44" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="opt"><span>1 año</span><span class="dot"></span></div>
+        <div class="res"><div class="medal"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="#0F2A44" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><b>¡Correcto!</b><small>Ley 962 de 2005, artículo 28</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="como">
+    <span class="kicker">CÓMO TRABAJO</span>
+    <h2>Simple, claro y sin sorpresas</h2>
+    <ol class="steps">
+      <li class="reveal"><span class="n">1</span><div><b>Visita</b><small>Diagnóstico gratis en su empresa</small></div></li>
+      <li class="reveal"><span class="n">2</span><div><b>Propuesta</b><small>Precio fijo y tiempos claros</small></div></li>
+      <li class="reveal"><span class="n">3</span><div><b>Organización</b><small>Ordeno, rotulo, digitalizo y creo el buscador</small></div></li>
+      <li class="reveal"><span class="n">4</span><div><b>Entrega</b><small>Capacito a su equipo para mantener el orden</small></div></li>
+    </ol>
+  </section>
+
+  <section class="duo">
+    <div class="reveal">
+      <span class="kicker">LO QUE DICE LA LEY</span>
+      <h2>Su empresa debe conservar sus documentos</h2>
+      <div class="law">
+        <div class="item"><div class="yrs"><b>10</b><span>AÑOS</span></div><div class="txt">Libros y papeles del comerciante: contabilidad y sus soportes.<small>Ley 962 de 2005, art. 28</small></div></div>
+        <div class="item"><div class="yrs"><b>20</b><span>AÑOS</span></div><div class="txt">Exámenes médicos ocupacionales, capacitaciones y entrega de elementos de protección, desde el retiro de cada trabajador.<small>Decreto 1072 de 2015, art. 2.2.4.6.13</small></div></div>
+        <div class="q">¿Los tiene ordenados y a salvo?</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="kicker">QUIÉN SOY</span>
+      <h2>Experiencia que se nota</h2>
+      <div class="me">
+        <div class="who"><img src="foto.jpg" alt="Johann Suárez"><div><h3>Johann Suárez</h3><span class="role">Gestión documental + tecnología</span></div></div>
+        <p>11 años organizando archivos en empresas del Meta: transporte, seguridad privada, ingeniería, educación, infraestructura vial y agroindustria.</p>
+        <ul class="list">
+          <li>Experiencia elaborando CCD, TRD y TVD</li>
+          <li>4 certificaciones de competencia laboral del SENA en archivo (2 en nivel avanzado)</li>
+          <li>Cursos del Archivo General de la Nación: TRD, PINAR y diagnóstico de archivos</li>
+          <li>Diplomado en Organización Documental – ESAP</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="final reveal" id="contacto">
+    <h2>Agende su <em>diagnóstico gratis</em></h2>
+    <p>30 minutos en su empresa, sin compromiso.</p>
+    <div class="actions">
+      <a class="btn btn-yellow" href="https://wa.me/573213258650?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="btn btn-glass" href="mailto:foliodigital.johann@gmail.com?subject=Diagn%C3%B3stico%20gratis%20-%20Folio%20Digital">Enviar correo</a>
+    </div>
+    <div class="data"><span>WhatsApp 321 325 8650</span><span>foliodigital.johann@gmail.com</span><span>Villavicencio, Meta</span></div>
+  </div>
+</main>
+
+<footer>© 2026 Folio Digital · Johann Suárez · Villavicencio, Meta</footer>
+
+<a class="float" href="https://wa.me/573213258650?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2z" fill="#fff"/><path d="M8.5 7.5c.4-.9 1-.9 1.4-.8l1 2.3c.1.3 0 .6-.2.8l-.7.8c.7 1.4 1.8 2.5 3.2 3.2l.8-.7c.2-.2.5-.3.8-.2l2.3 1c.1.4.1 1-.8 1.4-1 .5-2.3.4-4-.6a11 11 0 0 1-4.4-4.4c-1-1.7-1.1-3-.4-3.8z" fill="#2A72C4"/></svg>
+  Escríbame
+</a>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) return;
+    document.documentElement.classList.add('js');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold: 0.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>
