@@ -116,7 +116,7 @@
   @keyframes latido{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
   @media (prefers-reduced-motion:reduce){.tap span{animation:none}}
   .vwrap [hidden]{display:none!important}
-  .full{position:absolute;right:12px;bottom:12px;width:46px;height:46px;border:0;border-radius:14px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 16px rgba(15,42,68,.25);transition:transform .2s}
+  .full{position:absolute;left:12px;top:12px;width:46px;height:46px;border:0;border-radius:14px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 16px rgba(15,42,68,.25);transition:transform .2s}
   .full:hover{transform:scale(1.06)}
   .vwrap:fullscreen{border-radius:0;aspect-ratio:auto;width:100vw;height:100vh;background:#000}
   .vwrap:-webkit-full-screen{border-radius:0;aspect-ratio:auto;width:100vw;height:100vh;background:#000}
@@ -540,7 +540,7 @@
     function pintar(){
       again.hidden = !v.ended;
       tap.hidden = v.ended || !(visible && quiereSonido && v.muted);
-      snd.hidden = !tap.hidden;
+      snd.hidden = !tap.hidden || v.ended;
       snd.querySelector('span').textContent = v.muted ? 'Activar sonido' : 'Silenciar';
       snd.setAttribute('aria-pressed', String(!v.muted));
     }
