@@ -74,6 +74,15 @@
   .plan .pie{margin-top:auto;padding-top:18px}
   @media (min-width:900px){.planes{grid-template-columns:repeat(3,1fr)}}
 
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .tab{border:2px solid var(--line);background:#fff;color:var(--navy);font-family:inherit;font-weight:700;font-size:14.5px;
+       border-radius:999px;padding:10px 18px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+  .tab:hover{border-color:var(--blue2)}
+  .tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+  .verlos{display:inline-block;margin-top:12px;font-size:14px;font-weight:700;color:var(--blue);
+          background:none;border:0;padding:0;cursor:pointer;font-family:inherit}
+  .verlos:hover{text-decoration:underline}
+
   /* módulos */
   .bloque{margin-top:30px}
   .cabnivel{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -161,6 +170,7 @@
           <li>Encarpetado, rotulado e inventario (FUID)</li>
           <li>Material, evaluaciones y certificado</li>
         </ul>
+        <button class="verlos" type="button" data-ir="b">Ver sus módulos ↓</button>
         <div class="pie"><a class="btn btn-line" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Cotizar este plan</a></div>
       </div>
 
@@ -177,6 +187,7 @@
           <li>Digitalización y control de calidad</li>
           <li>Documento electrónico y la nube</li>
         </ul>
+        <button class="verlos" type="button" data-ir="m">Ver sus módulos ↓</button>
         <div class="pie"><a class="btn btn-blue" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Cotizar este plan</a></div>
       </div>
 
@@ -192,6 +203,7 @@
           <li>Alertas de vencimiento y formularios</li>
           <li>Indicadores y tablero de control</li>
         </ul>
+        <button class="verlos" type="button" data-ir="i">Ver sus módulos ↓</button>
         <div class="pie"><a class="btn btn-line" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Cotizar este plan</a></div>
       </div>
     </div>
@@ -201,8 +213,14 @@
     <span class="kicker">CONTENIDO</span>
     <h2>Los 18 módulos</h2>
     <p class="sub">Una ruta completa: se empieza por entender qué es un archivo y se termina automatizando su control.</p>
+    <div class="tabs">
+      <button class="tab on" type="button" data-f="todos">Todos</button>
+      <button class="tab" type="button" data-f="b">Básico</button>
+      <button class="tab" type="button" data-f="m">Medio</button>
+      <button class="tab" type="button" data-f="i">Intensivo</button>
+    </div>
 
-    <div class="bloque">
+    <div class="bloque" data-nivel="b">
       <div class="cabnivel b"><span class="tag">BÁSICO</span><h3>Fundamentos</h3><small>Módulos 1 al 7</small></div>
       <div class="lista">
         <div class="m"><span class="n">1</span><div><b>¿Qué es un archivo?</b><small>Diferencia entre un papel cualquiera y un documento de archivo, y por qué importa.</small></div></div>
@@ -215,7 +233,7 @@
       </div>
     </div>
 
-    <div class="bloque">
+    <div class="bloque" data-nivel="m">
       <div class="cabnivel m"><span class="tag">MEDIO</span><h3>Gestión documental</h3><small>Módulos 8 al 13</small></div>
       <div class="lista">
         <div class="m"><span class="n">8</span><div><b>Los instrumentos archivísticos</b><small>CCD, TRD, TVD, PGD y PINAR: para qué sirve cada uno y cómo se usan en el día a día.</small></div></div>
@@ -227,7 +245,7 @@
       </div>
     </div>
 
-    <div class="bloque">
+    <div class="bloque" data-nivel="i">
       <div class="cabnivel i"><span class="tag">INTENSIVO</span><h3>Repositorios y automatización</h3><small>Módulos 14 al 18</small></div>
       <div class="lista">
         <div class="m"><span class="n">14</span><div><b>Nomenclatura y metadatos</b><small>Cómo nombrar los archivos y qué información asociarles para encontrarlos siempre.</small></div></div>
@@ -271,6 +289,24 @@
     </div>
   </div>
 </main>
+
+<script>
+  (function(){
+    var tabs = [].slice.call(document.querySelectorAll('.tab'));
+    var bloques = [].slice.call(document.querySelectorAll('.bloque'));
+    function filtrar(f){
+      bloques.forEach(function(b){ b.hidden = (f !== 'todos' && b.dataset.nivel !== f); });
+      tabs.forEach(function(t){ t.classList.toggle('on', t.dataset.f === f); });
+    }
+    tabs.forEach(function(t){ t.addEventListener('click', function(){ filtrar(t.dataset.f); }); });
+    document.querySelectorAll('.verlos').forEach(function(v){
+      v.addEventListener('click', function(){
+        filtrar(v.dataset.ir);
+        document.getElementById('contenido').scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+    });
+  })();
+</script>
 
 <footer>© 2026 Folio Digital · Johann Suárez · Villavicencio, Meta</footer>
 
