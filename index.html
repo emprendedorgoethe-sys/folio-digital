@@ -587,7 +587,8 @@
     <p>30 minutos en su empresa, sin compromiso.</p>
     <div class="actions">
       <a class="btn btn-yellow" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-      <a class="btn btn-glass" href="mailto:foliodigital.johann@gmail.com?subject=Diagn%C3%B3stico%20gratis%20-%20Folio%20Digital">Enviar correo</a>
+      <a class="btn btn-glass" href="mailto:foliodigital.johann@gmail.com?subject=Diagn%C3%B3stico%20gratis%20-%20Folio%20Digital&amp;body=Buen%20d%C3%ADa%2C%0A%0AQuiero%20solicitar%20el%20diagn%C3%B3stico%20gratuito%20para%20mi%20empresa.%0A%0AEmpresa%3A%20%0ANombre%3A%20%0ATel%C3%A9fono%3A%20%0A%0AGracias.">Enviar correo</a>
+      <button class="btn btn-glass js-copiar" type="button" data-correo="foliodigital.johann@gmail.com">Copiar correo</button>
     </div>
     <div class="data"><span>WhatsApp 311 834 5024</span><span>foliodigital.johann@gmail.com</span><span>Villavicencio, Meta</span></div>
     <div class="actions" style="margin-top:16px">
@@ -733,6 +734,18 @@
     addEventListener('resize', alScroll);
     alScroll();
   })();
+  document.querySelectorAll('.js-copiar').forEach(function(b){
+    var original = b.textContent;
+    b.addEventListener('click', function(){
+      var correo = b.dataset.correo;
+      function ok(){ b.textContent = '¡Copiado!'; setTimeout(function(){ b.textContent = original; }, 2000); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(correo).then(ok).catch(function(){ window.prompt('Copie el correo:', correo); });
+      } else {
+        window.prompt('Copie el correo:', correo);
+      }
+    });
+  });
   document.querySelectorAll('.js-share').forEach(function(boton){
     boton.addEventListener('click', function(){
       var datos = {title:'Folio Digital', text:'Organización y digitalización documental en Villavicencio:', url:'https://emprendedorgoethe-sys.github.io/folio-digital/'};
