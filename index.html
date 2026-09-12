@@ -104,6 +104,35 @@
   .benefit b{display:block;font-size:16.5px;color:var(--navy);line-height:1.2}
   .benefit small{display:block;font-size:14px;color:var(--muted);line-height:1.35;margin-top:2px}
 
+  /* ---------- Cinta de palabras ---------- */
+  .cinta{overflow:hidden;background:var(--navy);padding:15px 0}
+  .cinta .via{display:flex;width:max-content;animation:desliza 32s linear infinite}
+  .cinta span{color:#8FB4DC;font-weight:800;font-size:14.5px;letter-spacing:2.2px;white-space:nowrap;text-transform:uppercase}
+  .cinta i{color:var(--yellow);font-style:normal;margin:0 20px}
+  @keyframes desliza{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.cinta .via{animation:none}}
+
+  /* ---------- Puntos de navegación ---------- */
+  .puntos{position:fixed;right:20px;top:50%;transform:translateY(-50%);display:none;flex-direction:column;gap:14px;z-index:35}
+  .puntos a{width:10px;height:10px;border-radius:50%;background:#C5D3E8;transition:transform .25s,background .25s}
+  .puntos a.on{background:var(--blue);transform:scale(1.6)}
+  @media (min-width:1180px){.puntos{display:flex}}
+
+  /* ---------- Aula Virtual ---------- */
+  .aula{background:radial-gradient(700px 380px at 80% 0%,rgba(84,160,238,.35),transparent 60%),linear-gradient(160deg,#0F2A44,#1E4B7A);
+        color:#fff;margin-top:70px;padding-block:60px}
+  .aula .kicker{background:rgba(255,255,255,.14);color:#BFD9F5}
+  .aula h2{color:#fff}
+  .aula h2 em{font-style:normal;color:var(--yellow)}
+  .aula .sub{color:#C9D6EA}
+  .aula-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:26px}
+  .aula-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:18px}
+  .aula-card .ic{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2)}
+  .aula-card b{display:block;font-size:17px;margin-top:12px}
+  .aula-card small{display:block;font-size:14px;color:#C9D6EA;line-height:1.4;margin-top:4px}
+  .aula .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  @media (min-width:760px){.aula-grid{grid-template-columns:repeat(3,1fr)}}
+
   /* ---------- Video ---------- */
   .vwrap{position:relative;margin-top:24px;border-radius:26px;overflow:hidden;box-shadow:var(--shadow2);background:#0F2A44;aspect-ratio:16/9}
   .vwrap video{display:block;width:100%;height:100%;object-fit:cover}
@@ -130,6 +159,10 @@
   .sub{color:var(--muted);margin-top:10px;font-size:17px;max-width:640px}
 
   .services{display:grid;grid-template-columns:1fr;gap:16px;margin-top:26px}
+  .svc:before{content:"";position:absolute;inset:0;border-radius:inherit;opacity:0;transition:opacity .3s;pointer-events:none;
+              background:radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(84,160,238,.18),transparent 65%)}
+  .svc:hover:before{opacity:1}
+  .num{font-variant-numeric:tabular-nums}
   .svc{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;position:relative;box-shadow:var(--shadow);transition:transform .25s ease,box-shadow .25s ease}
   .svc:hover{transform:translateY(-4px);box-shadow:var(--shadow2)}
   .svc.free{background:linear-gradient(160deg,#fff 0%,#FFF8E6 100%);border-color:#F4DDA0}
@@ -167,7 +200,10 @@
   .medal{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--yellow),#F7D98A);display:flex;align-items:center;justify-content:center;flex:none}
 
   /* ---------- Pasos ---------- */
-  .steps{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr;gap:12px;counter-reset:s}
+  .steps{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr;gap:12px;counter-reset:s;position:relative}
+  .steps:before{content:"";position:absolute;left:38px;top:14px;bottom:14px;width:3px;background:var(--line)}
+  .steps:after{content:"";position:absolute;left:38px;top:14px;width:3px;height:var(--avance,0%);
+               background:linear-gradient(var(--blue),var(--blue2));transition:height .25s ease-out}
   .steps li{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow)}
   .steps .n{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;flex:none}
   .steps b{display:block;color:var(--navy);font-size:17px}
@@ -215,12 +251,17 @@
     .services{grid-template-columns:repeat(2,1fr)}
     .steps{grid-template-columns:repeat(4,1fr)}
     .steps li{flex-direction:column}
+    .steps:before{left:12%;right:12%;top:38px;bottom:auto;width:auto;height:3px}
+    .steps:after{left:12%;top:38px;height:3px;width:var(--avance,0%)}
+    .bento .svc:nth-child(1){grid-column:span 2}
     .duo{grid-template-columns:1fr 1fr}
     .final{padding:52px}
   }
   @media (min-width:980px){ .hero-grid{grid-template-columns:1fr 290px} .qrcard{display:block} }
   @media (min-width:1000px){
-    .services{grid-template-columns:repeat(3,1fr)}
+    .services{grid-template-columns:repeat(6,1fr)}
+    .bento .svc:nth-child(1){grid-column:span 6}
+    .bento .svc:nth-child(n+2){grid-column:span 3}
     .train{grid-template-columns:1.1fr .9fr;gap:36px}
   }
   @media (max-width:420px){ .top .btn span{display:none} .includes{grid-template-columns:1fr} }
@@ -242,7 +283,7 @@
       <b>Folio <span>Digital</span></b>
     </a>
     <nav class="nav" aria-label="Secciones">
-      <a href="#servicios">Servicios</a><a href="#capacitaciones">Capacitaciones</a><a href="#como">Cómo trabajo</a><a href="#contacto">Contacto</a>
+      <a href="#servicios">Servicios</a><a href="#aula">Aula Virtual</a><a href="#capacitaciones">Capacitaciones</a><a href="#como">Cómo trabajo</a><a href="#contacto">Contacto</a>
     </nav>
     <a class="btn btn-yellow" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2z" fill="#0F2A44"/><path d="M8.5 7.5c.4-.9 1-.9 1.4-.8l1 2.3c.1.3 0 .6-.2.8l-.7.8c.7 1.4 1.8 2.5 3.2 3.2l.8-.7c.2-.2.5-.3.8-.2l2.3 1c.1.4.1 1-.8 1.4-1 .5-2.3.4-4-.6a11 11 0 0 1-4.4-4.4c-1-1.7-1.1-3-.4-3.8z" fill="#F2C14E"/></svg><span>Diagnóstico gratis</span>
@@ -262,8 +303,8 @@
       <a class="btn btn-glass" href="#servicios">Ver servicios</a>
     </div>
     <div class="stats">
-      <div class="stat"><b>11 años</b><span>organizando archivos</span></div>
-      <div class="stat"><b>5 servicios</b><span>de papel a la nube</span></div>
+      <div class="stat"><b><span class="num" data-a="11">0</span> años</b><span>organizando archivos</span></div>
+      <div class="stat"><b><span class="num" data-a="5">0</span> servicios</b><span>de papel a la nube</span></div>
       <div class="stat"><b>Gratis</b><span>el primer diagnóstico</span></div>
     </div>
     <div class="by"><img src="foto.jpg" alt=""><div><b>Johann Suárez</b><span>Gestión documental + tecnología</span></div></div>
@@ -403,11 +444,16 @@
     </div>
   </section>
 
+  </main>
+
+  <div class="cinta" aria-hidden="true"><div class="via"><span>Clasificación<i>·</i>Foliación<i>·</i>FUID<i>·</i>Rotulado<i>·</i>Digitalización<i>·</i>Nube<i>·</i>CCD<i>·</i>TRD<i>·</i>TVD<i>·</i>Capacitación<i>·</i>Alertas de vencimiento<i>·</i></span><span>Clasificación<i>·</i>Foliación<i>·</i>FUID<i>·</i>Rotulado<i>·</i>Digitalización<i>·</i>Nube<i>·</i>CCD<i>·</i>TRD<i>·</i>TVD<i>·</i>Capacitación<i>·</i>Alertas de vencimiento<i>·</i></span></div></div>
+
+  <main class="wrap">
   <section id="servicios">
     <span class="kicker">SERVICIOS</span>
     <h2>Lo que hago por su empresa</h2>
     <p class="sub">Del archivo en cajas a un sistema ordenado, seguro y fácil de consultar.</p>
-    <div class="services">
+    <div class="services bento">
       <article class="svc free reveal">
         <span class="badge">GRATIS</span>
         <div class="head"><div class="ic"><svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="9" width="28" height="35" rx="4" stroke="#2A72C4" stroke-width="3.5" fill="none"/><rect x="17" y="4" width="14" height="9" rx="2.5" fill="#0F2A44"/><path d="M17 27l5 5 9-10" stroke="#F2C14E" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Diagnóstico documental</h3></div>
@@ -470,6 +516,35 @@
     </div>
   </section>
 
+  </main>
+
+  <section class="aula" id="aula">
+    <div class="wrap">
+      <span class="kicker">AULA VIRTUAL</span>
+      <h2>Su equipo aprende <em>desde el celular</em></h2>
+      <p class="sub">Cada capacitación queda disponible en línea: sus empleados repasan cuando quieran, presentan la evaluación desde el celular y usted recibe los resultados.</p>
+      <div class="aula-grid">
+        <div class="aula-card reveal">
+          <div class="ic"><svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="5" width="30" height="38" rx="5" stroke="#F2C14E" stroke-width="3.5" fill="none"/><rect x="17" y="14" width="14" height="3.5" rx="1.75" fill="#fff"/><rect x="17" y="23" width="14" height="3.5" rx="1.75" fill="#fff"/><rect x="17" y="32" width="8" height="3.5" rx="1.75" fill="#54A0EE"/></svg></div>
+          <b>Módulos cortos</b><small>Lecciones de 5 a 8 minutos, con dibujos y ejemplos de su propia empresa.</small>
+        </div>
+        <div class="aula-card reveal">
+          <div class="ic"><svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="5" width="30" height="38" rx="5" stroke="#F2C14E" stroke-width="3.5" fill="none"/><path d="M16 18l3 3 6-6M16 31l3 3 6-6" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="29" y="17" width="5" height="3.5" rx="1.75" fill="#54A0EE"/><rect x="29" y="30" width="5" height="3.5" rx="1.75" fill="#54A0EE"/></svg></div>
+          <b>Evaluación en línea</b><small>Se califica sola y usted ve quién aprobó y en qué hay que reforzar.</small>
+        </div>
+        <div class="aula-card reveal">
+          <div class="ic"><svg width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="19" r="12" fill="#F2C14E"/><path d="M16 29l-4 15 12-6 12 6-4-15" fill="#54A0EE"/><path d="M19 19l3.5 3.5L29 16" stroke="#0F2A44" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <b>Certificado</b><small>Cada participante recibe su certificado de asistencia al terminar.</small>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="btn btn-yellow" href="aula.html">Entrar al Aula Virtual</a>
+        <a class="btn btn-glass" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Quiero capacitar a mi equipo</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
   <section id="como">
     <span class="kicker">CÓMO TRABAJO</span>
     <h2>Simple, claro y sin sorpresas</h2>
@@ -515,6 +590,9 @@
       <a class="btn btn-glass" href="mailto:foliodigital.johann@gmail.com?subject=Diagn%C3%B3stico%20gratis%20-%20Folio%20Digital">Enviar correo</a>
     </div>
     <div class="data"><span>WhatsApp 311 834 5024</span><span>foliodigital.johann@gmail.com</span><span>Villavicencio, Meta</span></div>
+    <div class="actions" style="margin-top:16px">
+      <a class="btn btn-glass" href="https://www.facebook.com/profile.php?id=61594386057347" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 9h3V5.5h-3c-2.2 0-4 1.8-4 4V12H7.5v3.5H10V22h3.5v-6.5H16L16.5 12H13.5V9.5c0-.3.2-.5.5-.5z" fill="#fff"/></svg>Síganos en Facebook</a>
+    </div>
     <div class="share">
       <button class="btn btn-glass js-share" type="button">Compartir esta página</button>
       <a class="btn btn-glass" href="qr-folio-digital.png" download="Folio Digital - QR.png">Descargar QR</a>
@@ -522,7 +600,16 @@
   </div>
 </main>
 
-<footer>© 2026 Folio Digital · Johann Suárez · Villavicencio, Meta</footer>
+<footer>© 2026 Folio Digital · Johann Suárez · Villavicencio, Meta<br><a href="https://www.facebook.com/profile.php?id=61594386057347" target="_blank" rel="noopener" style="color:var(--blue);font-weight:700;text-decoration:none">Facebook</a> · <a href="aula.html" style="color:var(--blue);font-weight:700;text-decoration:none">Aula Virtual</a></footer>
+
+<nav class="puntos" aria-label="Secciones">
+  <a href="#inicio" data-s="inicio" title="Inicio"></a>
+  <a href="#video" data-s="video" title="Vea la diferencia"></a>
+  <a href="#servicios" data-s="servicios" title="Servicios"></a>
+  <a href="#aula" data-s="aula" title="Aula Virtual"></a>
+  <a href="#capacitaciones" data-s="capacitaciones" title="Capacitaciones"></a>
+  <a href="#contacto" data-s="contacto" title="Contacto"></a>
+</nav>
 
 <a class="float" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2z" fill="#fff"/><path d="M8.5 7.5c.4-.9 1-.9 1.4-.8l1 2.3c.1.3 0 .6-.2.8l-.7.8c.7 1.4 1.8 2.5 3.2 3.2l.8-.7c.2-.2.5-.3.8-.2l2.3 1c.1.4.1 1-.8 1.4-1 .5-2.3.4-4-.6a11 11 0 0 1-4.4-4.4c-1-1.7-1.1-3-.4-3.8z" fill="#2A72C4"/></svg>
@@ -597,6 +684,54 @@
     });
     document.addEventListener('fullscreenchange', pintarCompleta);
     document.addEventListener('webkitfullscreenchange', pintarCompleta);
+  })();
+  (function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    document.querySelectorAll('.num').forEach(function(el){
+      var fin = parseInt(el.dataset.a, 10) || 0;
+      if (reduce || !('IntersectionObserver' in window)) { el.textContent = fin; return; }
+      new IntersectionObserver(function(es, obs){
+        es.forEach(function(e){
+          if (!e.isIntersecting) return;
+          obs.unobserve(el);
+          var ini = null;
+          requestAnimationFrame(function paso(t){
+            if (!ini) ini = t;
+            var q = Math.min((t - ini) / 900, 1);
+            el.textContent = Math.round(fin * (1 - Math.pow(1 - q, 3)));
+            if (q < 1) requestAnimationFrame(paso);
+          });
+        });
+      }, {threshold: .5}).observe(el);
+    });
+
+    document.querySelectorAll('.svc').forEach(function(c){
+      c.addEventListener('pointermove', function(e){
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+
+    var pasos = document.querySelector('.steps');
+    var puntos = [].slice.call(document.querySelectorAll('.puntos a'));
+    function alScroll(){
+      if (pasos) {
+        var r = pasos.getBoundingClientRect();
+        var q = (window.innerHeight * 0.85 - r.top) / (r.height + window.innerHeight * 0.2);
+        pasos.style.setProperty('--avance', Math.max(0, Math.min(1, q)) * 100 + '%');
+      }
+      var actual = null;
+      puntos.forEach(function(a){
+        var sec = document.getElementById(a.dataset.s);
+        if (sec && sec.getBoundingClientRect().top <= window.innerHeight * 0.4) actual = a;
+      });
+      puntos.forEach(function(a){ a.classList.toggle('on', a === actual); });
+    }
+    addEventListener('scroll', alScroll, {passive: true});
+    addEventListener('resize', alScroll);
+    alScroll();
   })();
   document.querySelectorAll('.js-share').forEach(function(boton){
     boton.addEventListener('click', function(){

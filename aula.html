@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aula Virtual · Folio Digital</title>
+<meta name="description" content="Aula Virtual de Folio Digital: módulos de gestión documental, evaluaciones en línea y certificado de asistencia.">
+<meta name="theme-color" content="#0F2A44">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{ --navy:#0F2A44; --blue:#2A72C4; --blue2:#54A0EE; --sky:#E7ECF9; --sky2:#F4F7FD;
+         --yellow:#F2C14E; --wine:#8E1B2E; --ink:#1D1D1F; --muted:#5F5F63; --line:#E3E7F0;
+         --shadow:0 10px 30px rgba(15,42,68,.10); --shadow2:0 18px 40px rgba(15,42,68,.16); }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--sky2);color:var(--ink);font-family:"Plus Jakarta Sans","Segoe UI",system-ui,Arial,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,p{margin:0}
+  a{color:inherit}
+  svg{display:block;max-width:100%}
+  .wrap{max-width:940px;margin:0 auto;padding-inline:18px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:700;
+       border-radius:999px;padding:13px 20px;font-size:15.5px;line-height:1.1;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-yellow{background:var(--yellow);color:var(--navy);box-shadow:0 8px 22px rgba(242,193,78,.45)}
+  .btn-blue{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;box-shadow:0 8px 22px rgba(42,114,196,.35)}
+  .btn-line{background:#fff;color:var(--navy);border:2px solid var(--line)}
+  .btn-glass{background:rgba(255,255,255,.10);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+
+  .top{position:sticky;top:0;z-index:40;background:rgba(15,42,68,.92);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+  .top .wrap{display:flex;align-items:center;gap:14px;height:64px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:1;min-width:0}
+  .logo b{font-size:19px;font-weight:800;letter-spacing:-.4px;white-space:nowrap}
+  .logo b span{color:var(--yellow)}
+  .top a.volver{color:#D5E1F2;text-decoration:none;font-weight:600;font-size:14.5px}
+
+  .hero{background:radial-gradient(800px 420px at 85% -10%,rgba(84,160,238,.45),transparent 60%),linear-gradient(160deg,#0F2A44,#1E4B7A);color:#fff;padding-block:46px 40px}
+  .chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+        color:#E7ECF9;font-weight:700;font-size:13px;border-radius:999px;padding:6px 14px;letter-spacing:1.2px}
+  .hero h1{font-size:clamp(30px,6vw,46px);line-height:1.08;font-weight:800;letter-spacing:-1.2px;margin-top:16px}
+  .hero h1 em{font-style:normal;color:var(--yellow)}
+  .hero p{color:#C9D6EA;margin-top:14px;font-size:17px;max-width:620px}
+
+  .pasos{display:grid;grid-template-columns:1fr;gap:12px;margin-top:24px}
+  .paso{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:14px}
+  .paso .n{width:34px;height:34px;border-radius:10px;background:var(--yellow);color:var(--navy);font-weight:800;
+           display:flex;align-items:center;justify-content:center;flex:none}
+  .paso b{display:block;font-size:15.5px}
+  .paso small{display:block;color:#C9D6EA;font-size:13.5px;line-height:1.35}
+  @media (min-width:760px){.pasos{grid-template-columns:repeat(3,1fr)}}
+
+  section{padding-block:46px 0}
+  .kicker{display:inline-block;font-size:12.5px;font-weight:800;color:var(--blue);letter-spacing:1.6px;background:var(--sky);border-radius:999px;padding:5px 12px}
+  h2{font-size:clamp(25px,4.4vw,34px);line-height:1.15;color:var(--navy);font-weight:800;letter-spacing:-.8px;margin-top:12px}
+  .sub{color:var(--muted);margin-top:10px}
+
+  .mods{display:grid;gap:16px;margin-top:24px}
+  .mod{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);position:relative;transition:transform .25s,box-shadow .25s}
+  .mod:hover{transform:translateY(-3px);box-shadow:var(--shadow2)}
+  .mod .cab{display:flex;align-items:center;gap:14px}
+  .mod .n{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;
+          font-weight:800;font-size:19px;display:flex;align-items:center;justify-content:center;flex:none}
+  .mod h3{font-size:19px;font-weight:800;color:var(--navy);letter-spacing:-.3px}
+  .mod .dur{font-size:13px;color:var(--muted);font-weight:600}
+  .mod p{font-size:15px;color:var(--muted);margin-top:10px}
+  .mod ul{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:6px}
+  .mod li{font-size:14.5px;font-weight:600;padding-left:22px;position:relative}
+  .mod li:before{content:"";position:absolute;left:2px;top:7px;width:9px;height:9px;border-radius:3px;background:var(--blue2)}
+  .mod .acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .pendiente{display:inline-block;background:#FFF6E5;color:#8A6212;border:1px solid #F4DDA0;border-radius:999px;
+             padding:8px 14px;font-size:13.5px;font-weight:700}
+
+  .aviso{background:#fff;border:2px dashed var(--line);border-radius:20px;padding:18px;margin-top:26px;color:var(--muted);font-size:14.5px}
+  .aviso b{color:var(--navy)}
+
+  .cierre{background:radial-gradient(600px 300px at 100% 0%,rgba(84,160,238,.45),transparent 60%),linear-gradient(135deg,#0F2A44,#1E4B7A);
+          color:#fff;border-radius:26px;padding:30px 22px;margin-top:50px;text-align:center}
+  .cierre h2{color:#fff}
+  .cierre h2 em{font-style:normal;color:var(--yellow)}
+  .cierre p{color:#C9D6EA;margin-top:8px}
+  .cierre .acciones{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
+  footer{padding-block:26px 60px;text-align:center;color:var(--muted);font-size:13.5px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html">
+      <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2A72C4"/><stop offset="1" stop-color="#54A0EE"/></linearGradient></defs>
+        <rect x="15" y="6" width="28" height="34" rx="3" fill="#fff"/><rect x="20" y="13" width="17" height="3" rx="1.5" fill="#9FB3C8"/>
+        <path d="M6 20h15l5 5h28a4 4 0 0 1 4 4v23a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z" fill="url(#lg)"/>
+        <circle cx="44" cy="42" r="9" fill="#0F2A44" stroke="#F2C14E" stroke-width="4"/>
+        <line x1="50.5" y1="48.5" x2="59" y2="57" stroke="#F2C14E" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+      <b>Folio <span>Digital</span></b>
+    </a>
+    <a class="volver" href="index.html">← Volver al sitio</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="chip">AULA VIRTUAL</span>
+    <h1>Aprenda a organizar su archivo, <em>paso a paso</em></h1>
+    <p>Módulos cortos que puede ver desde el celular, con evaluación en línea y certificado de asistencia. Hechos con los documentos y los procesos de su propia empresa.</p>
+    <div class="pasos">
+      <div class="paso"><span class="n">1</span><div><b>Vea el módulo</b><small>De 5 a 8 minutos cada uno</small></div></div>
+      <div class="paso"><span class="n">2</span><div><b>Presente la evaluación</b><small>Desde el celular, se califica sola</small></div></div>
+      <div class="paso"><span class="n">3</span><div><b>Reciba su certificado</b><small>De asistencia, al terminar</small></div></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section>
+    <span class="kicker">CONTENIDO</span>
+    <h2>Módulos del curso</h2>
+    <p class="sub">Organizar un archivo desde cero: de las cajas revueltas al documento que se encuentra en segundos.</p>
+
+    <div class="mods">
+      <article class="mod">
+        <div class="cab"><span class="n">1</span><div><h3>¿Cómo organizar un archivo desde cero?</h3><span class="dur">Panorama general · 8 min</span></div></div>
+        <p>La ruta completa, de principio a fin, para que entienda el orden de los pasos antes de tocar un solo papel.</p>
+        <ul>
+          <li>Qué significa organizar un archivo</li>
+          <li>La ruta de los 11 pasos</li>
+          <li>El error más común: empezar guardando</li>
+        </ul>
+        <div class="acciones"><span class="pendiente">Disponible en la capacitación</span></div>
+      </article>
+
+      <article class="mod">
+        <div class="cab"><span class="n">2</span><div><h3>Clasificación y ordenación</h3><span class="dur">6 min</span></div></div>
+        <p>De dónde viene cada documento, a qué grupo pertenece y en qué orden va dentro del expediente.</p>
+        <ul>
+          <li>No mezclar documentos de áreas distintas</li>
+          <li>El orden en que ocurrió el trámite</li>
+          <li>Ejercicio con documentos de su empresa</li>
+        </ul>
+        <div class="acciones"><span class="pendiente">Disponible en la capacitación</span></div>
+      </article>
+
+      <article class="mod">
+        <div class="cab"><span class="n">3</span><div><h3>Alistamiento y foliación</h3><span class="dur">7 min</span></div></div>
+        <p>Cómo preparar los documentos antes de guardarlos y cómo numerar las hojas correctamente.</p>
+        <ul>
+          <li>Retiro de ganchos y material que daña el papel</li>
+          <li>Documentos repetidos y hojas en blanco</li>
+          <li>Reglas de foliación, según el manual de la empresa</li>
+        </ul>
+        <div class="acciones"><span class="pendiente">Disponible en la capacitación</span></div>
+      </article>
+
+      <article class="mod">
+        <div class="cab"><span class="n">4</span><div><h3>Encarpetado, rotulado e inventario</h3><span class="dur">7 min</span></div></div>
+        <p>Guardar, identificar y registrar: lo que permite encontrar después lo que se archivó hoy.</p>
+        <ul>
+          <li>Qué información lleva el rótulo</li>
+          <li>Cómo se diligencia el inventario (FUID)</li>
+          <li>Diferencia entre el rótulo y el inventario</li>
+        </ul>
+        <div class="acciones"><span class="pendiente">Disponible en la capacitación</span></div>
+      </article>
+
+      <article class="mod">
+        <div class="cab"><span class="n">5</span><div><h3>Digitalización y control de calidad</h3><span class="dur">6 min</span></div></div>
+        <p>Digitalizar no es solo escanear. Cómo hacerlo bien y cómo revisar que quedó bien hecho.</p>
+        <ul>
+          <li>Qué hacer antes de escanear</li>
+          <li>Cómo nombrar los archivos</li>
+          <li>Lista de chequeo final</li>
+        </ul>
+        <div class="acciones"><span class="pendiente">Disponible en la capacitación</span></div>
+      </article>
+    </div>
+
+    <div class="aviso">
+      <b>¿Es participante de una capacitación?</b> Los enlaces de cada módulo y de las evaluaciones se activan el día de la sesión y se los comparte su instructor.
+    </div>
+  </section>
+
+  <div class="cierre">
+    <h2>¿Quiere capacitar a <em>su equipo</em>?</h2>
+    <p>Preparamos el Aula con los documentos y los procesos de su propia empresa.</p>
+    <div class="acciones">
+      <a class="btn btn-yellow" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="btn btn-glass" href="index.html">Ver todos los servicios</a>
+    </div>
+  </div>
+</main>
+
+<footer>© 2026 Folio Digital · Johann Suárez · Villavicencio, Meta</footer>
+
+</body>
+</html>
