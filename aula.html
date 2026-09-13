@@ -109,6 +109,12 @@
 
   .aviso{background:#fff;border:2px dashed var(--line);border-radius:20px;padding:18px;margin-top:28px;color:var(--muted);font-size:14.5px}
   .aviso b{color:var(--navy)}
+  /* La puerta de entrada de quien ya está inscrito: deja de ser un aviso
+     y pasa a ser una acción. Borde sólido azul, no punteado, porque aquí
+     sí hay algo que hacer. */
+  .aviso.entrada{border:2px solid var(--blue);text-align:center;padding:26px 20px}
+  .aviso.entrada b{display:block;font-size:18px;margin-bottom:6px}
+  .aviso.entrada p{margin:0 0 18px;color:var(--muted)}
 
   .cierre{background:radial-gradient(600px 300px at 100% 0%,rgba(84,160,238,.45),transparent 60%),linear-gradient(135deg,#0F2A44,#1E4B7A);
           color:#fff;border-radius:26px;padding:32px 22px;margin-top:52px;text-align:center}
@@ -275,8 +281,10 @@
       </div>
     </div>
 
-    <div class="aviso">
-      <b>¿Es participante de una capacitación?</b> Los enlaces de cada módulo y de las evaluaciones se activan el día de la sesión y se los comparte su instructor.
+    <div class="aviso entrada">
+      <b>¿Ya está inscrito en una capacitación?</b>
+      <p>Entre con su número de cédula. Adentro están los módulos, las evaluaciones y su certificado.</p>
+      <a class="btn btn-blue" href="https://folio-digital---aula-virtual.web.app" target="_blank" rel="noopener">Entrar a la capacitación →</a>
     </div>
   </section>
 
@@ -285,6 +293,7 @@
     <p>Armamos el plan con los documentos y los procesos de su propia empresa.</p>
     <div class="acciones">
       <a class="btn btn-yellow" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <a class="btn btn-glass" href="https://folio-digital---aula-virtual.web.app" target="_blank" rel="noopener">Entrar a la capacitación</a>
       <a class="btn btn-glass" href="index.html">Ver todos los servicios</a>
     </div>
   </div>
