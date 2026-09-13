@@ -55,6 +55,26 @@
   .nav a{color:#D5E1F2;text-decoration:none;font-weight:600;font-size:14.5px;padding:8px 12px;border-radius:999px;transition:background .2s,color .2s}
   .nav a:hover{background:rgba(255,255,255,.1);color:#fff}
   .top .btn{padding:10px 16px;font-size:14px}
+  /* El acceso al Aula, siempre a la vista en la barra. */
+  .entrada-barra{border-color:rgba(255,255,255,.55)}
+  .entrada-barra:hover{background:rgba(255,255,255,.22)}
+  /* En celular la barra se aprieta: el diagnóstico se va al cuerpo de la
+     página, donde está repetido varias veces, y arriba se queda el
+     acceso, que no está en ningún otro lado visible.
+     El logo DEJA de estirarse (flex:1 lo empujaba fuera de pantalla y
+     el botón salía cortado) y el rótulo se acorta a "Aula". */
+  @media (max-width:620px){
+    .top .btn-yellow{display:none}
+    .top .wrap{gap:10px}
+    .logo{flex:0 1 auto;min-width:0;overflow:hidden}
+    .logo b{font-size:17px;overflow:hidden;text-overflow:ellipsis}
+    .entrada-barra{flex:0 0 auto;padding:9px 13px;font-size:13.5px;gap:7px}
+    .entrada-barra span{display:none}
+    .entrada-barra::after{content:"Aula";font-weight:700}
+  }
+  @media (max-width:380px){
+    .logo b{display:none}
+  }
 
   /* ---------- Portada ---------- */
   .hero{position:relative;overflow:hidden;background:radial-gradient(900px 480px at 85% -10%,rgba(84,160,238,.45),transparent 60%),radial-gradient(700px 420px at -10% 110%,rgba(242,193,78,.18),transparent 60%),linear-gradient(160deg,#0F2A44 0%,#173A5E 60%,#1E4B7A 100%);color:#fff;padding-block:48px 150px}
@@ -130,7 +150,18 @@
   .aula-card .ic{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2)}
   .aula-card b{display:block;font-size:17px;margin-top:12px}
   .aula-card small{display:block;font-size:14px;color:#C9D6EA;line-height:1.4;margin-top:4px}
-  .aula .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  .aula .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;align-items:center}
+  /* El de entrar pesa más que los otros dos: es la acción del que ya
+     compró, y no puede competir de igual a igual con los de mirar. */
+  .aula .actions .btn-yellow{padding:15px 26px;font-size:16px}
+  .aula .actions .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .aula .sep{
+    width:100%;height:1px;background:rgba(255,255,255,.16);
+    margin:4px 0 2px;
+  }
+  .aula .actions .nota{
+    flex-basis:100%;color:#9FBBDC;font-size:13.5px;margin:0;
+  }
   @media (min-width:760px){.aula-grid{grid-template-columns:repeat(3,1fr)}}
 
   /* ---------- Video ---------- */
@@ -285,6 +316,13 @@
     <nav class="nav" aria-label="Secciones">
       <a href="#servicios">Servicios</a><a href="#aula">Aula Virtual</a><a href="#capacitaciones">Capacitaciones</a><a href="#como">Cómo trabajo</a><a href="#contacto">Contacto</a>
     </nav>
+    <!-- El acceso al Aula vive en la BARRA, no enterrado en una sección:
+         se ve desde el primer segundo y en toda la página, sin bajar.
+         En vidrio y no en amarillo para no competir con el diagnóstico,
+         que es la captación comercial. -->
+    <a class="btn btn-glass entrada-barra" href="https://folio-digital---aula-virtual.web.app" target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><rect x="4" y="10" width="16" height="10" rx="2.5" fill="#F2C14E"/><circle cx="12" cy="15" r="1.6" fill="#0F2A44"/></svg><span>Entrar al Aula</span>
+    </a>
     <a class="btn btn-yellow" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2z" fill="#0F2A44"/><path d="M8.5 7.5c.4-.9 1-.9 1.4-.8l1 2.3c.1.3 0 .6-.2.8l-.7.8c.7 1.4 1.8 2.5 3.2 3.2l.8-.7c.2-.2.5-.3.8-.2l2.3 1c.1.4.1 1-.8 1.4-1 .5-2.3.4-4-.6a11 11 0 0 1-4.4-4.4c-1-1.7-1.1-3-.4-3.8z" fill="#F2C14E"/></svg><span>Diagnóstico gratis</span>
     </a>
@@ -542,6 +580,8 @@
            quien viene a mirar pasa por la vitrina del Aula. -->
       <div class="actions">
         <a class="btn btn-yellow" href="https://folio-digital---aula-virtual.web.app" target="_blank" rel="noopener">Entrar a la capacitación →</a>
+        <p class="nota">Para quienes ya están inscritos. Se entra con el número de cédula.</p>
+        <div class="sep"></div>
         <a class="btn btn-glass" href="aula.html">Ver los 18 módulos</a>
         <a class="btn btn-glass" href="https://wa.me/573118345024?text=Hola%20Johann%2C%20vi%20la%20p%C3%A1gina%20de%20Folio%20Digital%20y%20quiero%20el%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener">Quiero capacitar a mi equipo</a>
       </div>

@@ -36,6 +36,23 @@
   .logo b{font-size:19px;font-weight:800;letter-spacing:-.4px;white-space:nowrap}
   .logo b span{color:var(--yellow)}
   .top a.volver{color:#D5E1F2;text-decoration:none;font-weight:600;font-size:14.5px}
+  .top .btn{padding:10px 16px;font-size:14px;margin-left:14px}
+  .entrada-barra{border-color:rgba(255,255,255,.55)}
+  .entrada-barra:hover{background:rgba(255,255,255,.22)}
+  /* Misma corrección que en la página principal: el logo dejaba de caber
+     y empujaba el botón fuera de la pantalla. */
+  @media (max-width:620px){
+    .top a.volver{display:none}
+    .top .wrap{gap:10px}
+    .logo{flex:0 1 auto;min-width:0;overflow:hidden}
+    .logo b{font-size:17px;overflow:hidden;text-overflow:ellipsis}
+    .entrada-barra{flex:0 0 auto;padding:9px 13px;font-size:13.5px;gap:7px;margin-left:auto}
+    .entrada-barra span{display:none}
+    .entrada-barra::after{content:"Aula";font-weight:700}
+  }
+  @media (max-width:380px){
+    .logo b{display:none}
+  }
 
   .hero{background:radial-gradient(800px 420px at 85% -10%,rgba(84,160,238,.45),transparent 60%),linear-gradient(160deg,#0F2A44,#1E4B7A);color:#fff;padding-block:46px 40px}
   .chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
@@ -49,6 +66,37 @@
   .paso b{display:block;font-size:15.5px}
   .paso small{display:block;color:#C9D6EA;font-size:13.5px;line-height:1.35}
   @media (min-width:760px){.pasos{grid-template-columns:repeat(3,1fr)}}
+
+  /* ---------- Bloque de acceso ----------
+     La puerta del participante. Va en el encabezado, con jerarquía
+     propia: no es un botón suelto entre el texto, es una zona con
+     borde y peso que se lee de una. */
+  .acceso{
+    margin-top:30px;padding:22px 24px;
+    background:rgba(255,255,255,.09);
+    border:1px solid rgba(255,255,255,.22);
+    border-left:4px solid var(--yellow);
+    border-radius:18px;
+    display:flex;flex-wrap:wrap;align-items:center;gap:18px 26px;
+    backdrop-filter:saturate(140%) blur(6px);
+  }
+  .acceso .texto{flex:1 1 300px;min-width:0}
+  .acceso .et{
+    display:block;font-size:11px;font-weight:800;
+    letter-spacing:1.8px;color:var(--yellow);margin-bottom:6px;
+  }
+  .acceso b{display:block;font-size:19px;font-weight:800;letter-spacing:-.3px}
+  .acceso small{display:block;color:#C9D6EA;font-size:14.5px;margin-top:4px;line-height:1.45}
+  .acceso .btn{flex:0 0 auto;padding:15px 26px;font-size:16px}
+  .acceso .btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  @media (max-width:560px){
+    .acceso{padding:20px}
+    .acceso .btn{width:100%}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .btn{transition:none}
+    .btn:hover{transform:none}
+  }
 
   section{padding-block:52px 0}
   .kicker{display:inline-block;font-size:12.5px;font-weight:800;color:var(--blue);letter-spacing:1.6px;background:var(--sky);border-radius:999px;padding:5px 12px}
@@ -140,6 +188,11 @@
       <b>Folio <span>Digital</span></b>
     </a>
     <a class="volver" href="index.html">← Volver al sitio</a>
+    <!-- También en la barra de esta página: quien llega buscando entrar
+         no debería tener que leer la vitrina para encontrar la puerta. -->
+    <a class="btn btn-glass entrada-barra" href="https://folio-digital---aula-virtual.web.app" target="_blank" rel="noopener">
+      <svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><rect x="4" y="10" width="16" height="10" rx="2.5" fill="#F2C14E"/><circle cx="12" cy="15" r="1.6" fill="#0F2A44"/></svg><span>Entrar al Aula</span>
+    </a>
   </div>
 </header>
 
@@ -156,9 +209,13 @@
 
     <!-- La puerta va ARRIBA. Estaba al final de la página, después de los
          18 módulos, y nadie baja hasta allá para entrar a estudiar. -->
-    <div style="margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+    <div class="acceso">
+      <div class="texto">
+        <span class="et">ACCESO PARTICIPANTES</span>
+        <b>¿Ya está inscrito en una capacitación?</b>
+        <small>Entre con su número de cédula. Adentro están sus módulos, las evaluaciones y su certificado.</small>
+      </div>
       <a class="btn btn-yellow" href="https://folio-digital---aula-virtual.web.app" target="_blank" rel="noopener">Entrar a la capacitación →</a>
-      <span style="color:#C9D6EA;font-size:14.5px">¿Ya está inscrito? Entre con su cédula.</span>
     </div>
   </div>
 </div>
